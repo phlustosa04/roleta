@@ -1,0 +1,61 @@
+
+body {
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.15), transparent 40%),
+        linear-gradient(135deg, rgb(25, 25, 150), rgb(70, 30, 180));
+
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+h1{
+text-align: center;
+
+}
+.titulo {
+background-color: white;
+border-radius: 60px;
+padding: 10px;
+width: 30%;
+margin: 20px auto;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.explicacao {
+background-color: white;
+border-radius: 60px;
+padding: 30px;
+width: 60%;
+margin: 60px auto;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.explicacao p {
+    line-height: 1.3;
+}
+.botao {
+background-color: rgb(9, 9, 160);
+text-decoration: none;
+padding: 15px 45px;
+color: white;
+border-radius: 60px;
+display: block;
+margin: 10px auto;
+width: fit-content;
+transition: 0.5s;
+}
+.informacoes {
+    text-align: center;
+    font-size: 14px;
+    margin: 20px 0;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+.botao:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgb(9, 9, 160);
+}
