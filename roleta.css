@@ -5,61 +5,77 @@
 }
 
 body {
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.15), transparent 40%),
+        linear-gradient(135deg, rgb(25, 25, 150), rgb(70, 30, 180));
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f5;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+}
+
+/* TÍTULO PRINCIPAL */
+.titulo {
+    background-color: white;
+    color: #191996;
+    border-radius: 60px;
+    padding: 10px 30px;
+    width: 35%;
+    max-width: 400px;
+    margin: 30px auto 10px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
 }
 
 /* CONTAINER PRINCIPAL */
 .container {
     width: 90%;
-    max-width: 1000px;
-    min-height: 600px;
+    max-width: 900px;
     background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 40px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin: 20px auto;
+    color: #333;
 }
 
-/* TÍTULO */
-h1 {
-    font-size: 36px;
-    color: #222;
+.container h2 {
+    color: rgb(25, 25, 150);
     margin-bottom: 10px;
-    text-align: center;
 }
 
-p {
+.container > p {
     color: #666;
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 20px;
     text-align: center;
-    margin-bottom: 30px;
 }
 
 /* ÁREA DA ROLETA */
 .roleta-container {
     position: relative;
-    width: 450px;
-    height: 450px;
+    width: 380px;
+    height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px 0;
 }
 
-/* ROLETA */
 .roleta {
-    width: 420px;
-    height: 420px;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
-    transform-origin: center center; /* Garante que o giro ocorra no eixo central */
-
+    transform-origin: center center;
     background: conic-gradient(
         #ff3b30 0deg 72deg,
         #007aff 72deg 144deg,
@@ -67,131 +83,202 @@ p {
         #ffd60a 216deg 288deg,
         #6f42c1 288deg 360deg
     );
-
-    border: 8px solid #222;
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 3px white;
-
+    border: 8px solid white;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3), inset 0 0 0 3px rgba(0,0,0,0.1);
     transition: transform 4s cubic-bezier(0.15, 0.75, 0.25, 1);
 }
 
-/* PONTA DA ROLETA (SETA) */
 .seta {
     position: absolute;
     top: -5px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-
     width: 0;
     height: 0;
-
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-top: 35px solid #222;
-
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 30px solid rgb(9, 9, 160);
     filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.3));
 }
 
-/* CENTRO DA ROLETA */
 .centro {
     position: absolute;
-    width: 65px;
-    height: 65px;
-
+    width: 55px;
+    height: 55px;
     background: white;
-    border: 6px solid #222;
+    border: 5px solid rgb(9, 9, 160);
     border-radius: 50%;
-
     z-index: 5;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* BOTÃO */
 button {
-    margin-top: 35px;
-    padding: 15px 45px;
-    border: none;
-    border-radius: 10px;
-    background: #222;
+    background-color: rgb(9, 9, 160);
     color: white;
-    font-size: 20px;
+    border: none;
+    border-radius: 60px;
+    padding: 15px 45px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(9, 9, 160, 0.4);
 }
 
 button:hover {
-    background: #444;
     transform: scale(1.05);
+    background-color: rgb(25, 25, 190);
+    box-shadow: 0 6px 20px rgba(25, 25, 190, 0.6);
 }
 
-button:active {
-    transform: scale(0.98);
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
-/* RESULTADO */
 #resultado {
-    margin-top: 25px;
-    font-size: 24px;
+    margin-top: 15px;
+    font-size: 18px;
     font-weight: bold;
-    color: #222;
-    min-height: 30px;
+    color: rgb(25, 25, 150);
+    min-height: 25px;
     text-align: center;
 }
 
-/* PROFISSÕES / LEGENDA */
+/* LEGENDA / PROFISSÕES */
 .profissoes {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .profissao {
-    padding: 10px 18px;
+    padding: 8px 15px;
     border-radius: 20px;
-    background: #eee;
+    background: #f0f0f5;
     color: #333;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
 
-/* RESPONSIVIDADE */
+.voltar-inicio {
+    display: inline-block;
+    color: rgb(9, 9, 160);
+    text-decoration: none;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.voltar-inicio:hover {
+    text-decoration: underline;
+}
+
+/* MODAL / ABA FLUTUANTE */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.ativo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 30px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    color: #333;
+}
+
+.modal-overlay.ativo .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h2 {
+    color: rgb(25, 25, 150);
+    margin-bottom: 15px;
+    font-size: 24px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modal-content p {
+    line-height: 1.6;
+    margin-bottom: 12px;
+    font-size: 15px;
+    text-align: left;
+    color: #444;
+}
+
+.modal-content strong {
+    color: rgb(9, 9, 160);
+}
+
+.fechar-modal {
+    background-color: rgb(9, 9, 160);
+    color: white;
+    border: none;
+    border-radius: 60px;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    margin: 25px auto 0 auto;
+    transition: 0.3s;
+}
+
+.fechar-modal:hover {
+    background-color: rgb(25, 25, 190);
+}
+
+/* RODAPÉ */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
 @media (max-width: 600px) {
-    .container {
+    .container, .titulo {
         width: 95%;
-        padding: 25px 15px;
+        padding: 20px;
     }
-
-    h1 {
-        font-size: 28px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
     .roleta-container {
-        width: 330px;
-        height: 330px;
-    }
-
-    .roleta {
         width: 300px;
         height: 300px;
     }
-
-    button {
-        font-size: 18px;
-        padding: 13px 35px;
+    .roleta {
+        width: 270px;
+        height: 270px;
     }
 }
