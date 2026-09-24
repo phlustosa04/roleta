@@ -2,20 +2,41 @@
 <html lang="pt-br">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roleta de Profissões</title>
     <link rel="stylesheet" href="roleta.css">
 </head>
 <body>
-    <section class="tituloroleta">
 
-    </section>
-    <section class="arearoleta">
-        <div class="roleta">
-            
+    <div class="container">
+        <h1>Roleta de Profissões</h1>
+        <p>Gire para descobrir qual área de desenvolvimento de sistemas você vai explorar!</p>
+
+        <!-- ÁREA DA ROLETA -->
+        <div class="roleta-container">
+            <div class="seta"></div>
+            <div class="roleta" id="roleta"></div>
+            <div class="centro"></div>
         </div>
 
-    </section>
+        <!-- BOTÃO DE GIRAR -->
+        <button id="botao-girar">Girar Roleta</button>
 
+        <!-- RESULTADO DO SORTEIO -->
+        <div id="resultado"></div>
+
+        <!-- LEGENDA DAS PROFISSÕES -->
+        <div class="profissoes">
+            <span class="profissao" style="border-left: 5px solid #ff3b30;">Front-end</span>
+            <span class="profissao" style="border-left: 5px solid #007aff;">Back-end</span>
+            <span class="profissao" style="border-left: 5px solid #34c759;">Eng. de Software</span>
+            <span class="profissao" style="border-left: 5px solid #ffd60a;">Cientista de Dados</span>
+            <span class="profissao" style="border-left: 5px solid #6f42c1;">Testes (QA)</span>
+        </div>
+    </div>
+
+    <script src="roleta.js"></script>
 </body>
 
 </html>
