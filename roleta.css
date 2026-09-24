@@ -58,6 +58,7 @@ p {
     width: 420px;
     height: 420px;
     border-radius: 50%;
+    transform-origin: center center; /* Garante que o giro ocorra no eixo central */
 
     background: conic-gradient(
         #ff3b30 0deg 72deg,
@@ -76,7 +77,7 @@ p {
     transition: transform 4s cubic-bezier(0.15, 0.75, 0.25, 1);
 }
 
-/* PONTA DA ROLETA */
+/* PONTA DA ROLETA (SETA) */
 .seta {
     position: absolute;
     top: -5px;
@@ -116,20 +117,14 @@ p {
 /* BOTÃO */
 button {
     margin-top: 35px;
-
     padding: 15px 45px;
-
     border: none;
     border-radius: 10px;
-
     background: #222;
     color: white;
-
     font-size: 20px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
@@ -145,18 +140,14 @@ button:active {
 /* RESULTADO */
 #resultado {
     margin-top: 25px;
-
     font-size: 24px;
     font-weight: bold;
-
     color: #222;
-
     min-height: 30px;
-
     text-align: center;
 }
 
-/* PROFISSÕES */
+/* PROFISSÕES / LEGENDA */
 .profissoes {
     display: flex;
     justify-content: center;
@@ -167,19 +158,15 @@ button:active {
 
 .profissao {
     padding: 10px 18px;
-
     border-radius: 20px;
-
     background: #eee;
     color: #333;
-
     font-size: 14px;
     font-weight: bold;
 }
 
 /* RESPONSIVIDADE */
 @media (max-width: 600px) {
-
     .container {
         width: 95%;
         padding: 25px 15px;
