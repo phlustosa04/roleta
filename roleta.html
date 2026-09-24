@@ -1,42 +1,197 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roleta de Profissões</title>
-    <link rel="stylesheet" href="roleta.css">
-</head>
-<body>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    <div class="container">
-        <h1>Roleta de Profissões</h1>
-        <p>Gire para descobrir qual área de desenvolvimento de sistemas você vai explorar!</p>
+/* CONTAINER PRINCIPAL */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    min-height: 600px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-        <!-- ÁREA DA ROLETA -->
-        <div class="roleta-container">
-            <div class="seta"></div>
-            <div class="roleta" id="roleta"></div>
-            <div class="centro"></div>
-        </div>
+/* TÍTULO */
+h1 {
+    font-size: 36px;
+    color: #222;
+    margin-bottom: 10px;
+    text-align: center;
+}
 
-        <!-- BOTÃO DE GIRAR -->
-        <button id="botao-girar">Girar Roleta</button>
+p {
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        <!-- RESULTADO DO SORTEIO -->
-        <div id="resultado"></div>
+/* ÁREA DA ROLETA */
+.roleta-container {
+    position: relative;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        <!-- LEGENDA DAS PROFISSÕES -->
-        <div class="profissoes">
-            <span class="profissao" style="border-left: 5px solid #ff3b30;">Front-end</span>
-            <span class="profissao" style="border-left: 5px solid #007aff;">Back-end</span>
-            <span class="profissao" style="border-left: 5px solid #34c759;">Eng. de Software</span>
-            <span class="profissao" style="border-left: 5px solid #ffd60a;">Cientista de Dados</span>
-            <span class="profissao" style="border-left: 5px solid #6f42c1;">Testes (QA)</span>
-        </div>
-    </div>
+/* ROLETA */
+.roleta {
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    transform-origin: center center; /* Garante que o giro ocorra no eixo central */
 
-    <script src="roleta.js"></script>
-</body>
+    background: conic-gradient(
+        #ff3b30 0deg 72deg,
+        #007aff 72deg 144deg,
+        #34c759 144deg 216deg,
+        #ffd60a 216deg 288deg,
+        #6f42c1 288deg 360deg
+    );
 
-</html>
+    border: 8px solid #222;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 3px white;
+
+    transition: transform 4s cubic-bezier(0.15, 0.75, 0.25, 1);
+}
+
+/* PONTA DA ROLETA (SETA) */
+.seta {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    width: 0;
+    height: 0;
+
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 35px solid #222;
+
+    filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* CENTRO DA ROLETA */
+.centro {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+
+    background: white;
+    border: 6px solid #222;
+    border-radius: 50%;
+
+    z-index: 5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* BOTÃO */
+button {
+    margin-top: 35px;
+    padding: 15px 45px;
+    border: none;
+    border-radius: 10px;
+    background: #222;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #444;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* RESULTADO */
+#resultado {
+    margin-top: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #222;
+    min-height: 30px;
+    text-align: center;
+}
+
+/* PROFISSÕES / LEGENDA */
+.profissoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.profissao {
+    padding: 10px 18px;
+    border-radius: 20px;
+    background: #eee;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .roleta-container {
+        width: 330px;
+        height: 330px;
+    }
+
+    .roleta {
+        width: 300px;
+        height: 300px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 13px 35px;
+    }
+}
