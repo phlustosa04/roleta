@@ -127,12 +127,13 @@
             const indiceSorteado = Math.floor(Math.random() * profissoes.length);
             const escolhida = profissoes[indiceSorteado];
 
-            // Cálculo exato alinhando o centro da fatia com a seta no topo
-            const centroFatia = escolhida.anguloInicio + ((escolhida.anguloFim - escolhida.anguloInicio) / 2);
+            // Ponto central da fatia sorteada (cada fatia tem 72 graus)
+            const centroFatia = escolhida.anguloInicio + 36; 
             const voltasExtras = 360 * 6;
-            const anguloAlvo = voltasExtras + (360 - centroFatia);
+            
+            // Fórmula corrigida para alinhar exatamente com a seta no topo
+            anguloAtual = (anguloAtual - (anguloAtual % 360)) + voltasExtras + (360 - centroFatia);
 
-            anguloAtual += anguloAlvo;
             roleta.style.transform = `rotate(${anguloAtual}deg)`;
 
             setTimeout(() => {
