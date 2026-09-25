@@ -85,20 +85,26 @@ h1 {
     transition: transform 4s cubic-bezier(0.15, 0.75, 0.25, 1);
 }
 
-/* ESTILIZAÇÃO DOS TEXTOS DENTRO DAS FATIAS DA ROLETA */
 .fatia-texto {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
+    width: 120px;
+    margin-left: -60px;
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    transform-origin: 0 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
     pointer-events: none;
+    transform-origin: center center;
 }
+
+.fatia-1 { transform: rotate(36deg) translateY(-100px); }
+.fatia-2 { transform: rotate(108deg) translateY(-100px); }
+.fatia-3 { transform: rotate(180deg) translateY(-100px); }
+.fatia-4 { transform: rotate(252deg) translateY(-100px); }
+.fatia-5 { transform: rotate(324deg) translateY(-100px); }
 
 .seta {
     position: absolute;
@@ -149,6 +155,23 @@ h1 {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
+}
+
+.profissoes-legenda {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.item-legenda {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #f0f0f5;
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .voltar {
@@ -265,7 +288,12 @@ footer {
         width: 270px;
         height: 270px;
     }
+    .fatia-1 { transform: rotate(36deg) translateY(-75px); }
+    .fatia-2 { transform: rotate(108deg) translateY(-75px); }
+    .fatia-3 { transform: rotate(180deg) translateY(-75px); }
+    .fatia-4 { transform: rotate(252deg) translateY(-75px); }
+    .fatia-5 { transform: rotate(324deg) translateY(-75px); }
     .fatia-texto {
-        font-size: 10px;
+        font-size: 11px;
     }
 }
