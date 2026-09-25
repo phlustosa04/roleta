@@ -89,9 +89,8 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
-    margin-left: -50px;
-    margin-top: -10px;
+    width: 110px;
+    margin-left: -55px;
     text-align: center;
     font-size: 11px;
     font-weight: bold;
@@ -100,6 +99,13 @@ h1 {
     pointer-events: none;
     transform-origin: center center;
 }
+
+/* Posicionamento exato para cada uma das 5 fatias da roleta */
+.fatia-1 { transform: rotate(36deg) translateY(-100px); }
+.fatia-2 { transform: rotate(108deg) translateY(-100px); }
+.fatia-3 { transform: rotate(180deg) translateY(-100px); }
+.fatia-4 { transform: rotate(252deg) translateY(-100px); }
+.fatia-5 { transform: rotate(324deg) translateY(-100px); }
 
 .seta {
     position: absolute;
@@ -283,6 +289,11 @@ footer {
         width: 270px;
         height: 270px;
     }
+    .fatia-1 { transform: rotate(36deg) translateY(-75px); }
+    .fatia-2 { transform: rotate(108deg) translateY(-75px); }
+    .fatia-3 { transform: rotate(180deg) translateY(-75px); }
+    .fatia-4 { transform: rotate(252deg) translateY(-75px); }
+    .fatia-5 { transform: rotate(324deg) translateY(-75px); }
     .fatia-texto {
         font-size: 10px;
     }
