@@ -1,197 +1,151 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta de Profissões - Desenvolvimento de Sistemas</title>
+    <link rel="stylesheet" href="roleta.css">
+</head>
+<body>
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f5;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    <header class="titulo">
+        <h1>Roleta de Profissões</h1>
+    </header>
 
-/* CONTAINER PRINCIPAL */
-.container {
-    width: 90%;
-    max-width: 1000px;
-    min-height: 600px;
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    <main class="container">
+        <h2>Descubra sua Carreira</h2>
+        <p class="subtitulo-desc">Gire a roleta abaixo para sortear uma profissão da área de Desenvolvimento de Sistemas e conhecer seus detalhes!</p>
 
-/* TÍTULO */
-h1 {
-    font-size: 36px;
-    color: #222;
-    margin-bottom: 10px;
-    text-align: center;
-}
+        <div class="roleta-container">
+            <div class="seta"></div>
+            <div class="roleta" id="roleta"></div>
+            <div class="centro"></div>
+        </div>
 
-p {
-    color: #666;
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: 30px;
-}
+        <button id="botao-girar" class="botao">Girar Roleta</button>
 
-/* ÁREA DA ROLETA */
-.roleta-container {
-    position: relative;
-    width: 450px;
-    height: 450px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        <div class="profissoes-legenda">
+            <span class="item-legenda" style="border-left: 4px solid #ff3b30;">Front-end</span>
+            <span class="item-legenda" style="border-left: 4px solid #007aff;">Back-end</span>
+            <span class="item-legenda" style="border-left: 4px solid #34c759;">Eng. Software</span>
+            <span class="item-legenda" style="border-left: 4px solid #ffd60a;">Cientista de Dados</span>
+            <span class="item-legenda" style="border-left: 4px solid #6f42c1;">Testes (QA)</span>
+        </div>
 
-/* ROLETA */
-.roleta {
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    transform-origin: center center; /* Garante que o giro ocorra no eixo central */
+        <a href="index.html" class="voltar">Voltar à página inicial</a>
+    </main>
 
-    background: conic-gradient(
-        #ff3b30 0deg 72deg,
-        #007aff 72deg 144deg,
-        #34c759 144deg 216deg,
-        #ffd60a 216deg 288deg,
-        #6f42c1 288deg 360deg
-    );
+    <div id="modal-profissao" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Nome da Profissão</h3>
+                <span class="badge-profissao">Sorteado!</span>
+            </div>
+            <div class="modal-body" id="modal-texto"></div>
+            <div class="modal-footer">
+                <button id="botao-fechar" class="botao">Girar Novamente</button>
+            </div>
+        </div>
+    </div>
 
-    border: 8px solid #222;
+    <footer>
+        <p>Projeto de Desenvolvimento de Sistemas <br> 2º Desenvolvimento de Sistemas "B"</p>
+    </footer>
 
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 3px white;
+    <script>
+        const profissoes = [
+            {
+                nome: "Desenvolvedor Front-end",
+                anguloInicio: 0,
+                anguloFim: 72,
+                atividades: "Cria a interface visual e a experiência de usuário de sites e aplicativos. É responsável por transformar o design em código funcional com o qual o usuário interage diretamente.",
+                tecnologias: "HTML5, CSS3, JavaScript, React, Vue.js, Tailwind CSS.",
+                atuacao: "Agências digitais, startups, empresas de e-commerce e equipes de produto de tecnologia.",
+                curiosidade: "É a ponte perfeita entre a criatividade do design visual e a lógica da programação!"
+            },
+            {
+                nome: "Desenvolvedor Back-end",
+                anguloInicio: 72,
+                anguloFim: 144,
+                atividades: "Desenvolve a lógica de negócios, gerenciamento de servidores, autenticação de usuários e integração com bancos de dados nos bastidores da aplicação.",
+                tecnologias: "Node.js, Python, Java, PHP, C#, MySQL, MongoDB.",
+                atuacao: "Empresas de software corporativo, infraestrutura de nuvem, sistemas bancários e serviços de streaming.",
+                curiosidade: "O trabalho deles não aparece na tela, mas sem ele nenhum sistema conseguiria salvar dados ou fazer login!"
+            },
+            {
+                nome: "Engenheiro de Software",
+                anguloInicio: 144,
+                anguloFim: 216,
+                atividades: "Planeja, arquiteta e supervisiona o ciclo de vida completo de grandes sistemas complexos, garantindo escalabilidade, segurança e padrões de qualidade de código.",
+                tecnologias: "Arquitetura de microsserviços, Docker, Kubernetes, Git, metodologias ágeis (Scrum).",
+                atuacao: "Grandes corporações de tecnologia (Big Techs), multinacionais e consultorias globais de software.",
+                curiosidade: "Atua como o 'arquiteto civil' dos sistemas digitais modernos, unindo engenharia e programação avançada."
+            },
+            {
+                nome: "Cientista de Dados",
+                anguloInicio: 216,
+                anguloFim: 288,
+                atividades: "Analisa grandes volumes de dados brutos para extrair insights estratégicos, construir modelos preditivos e treinar algoritmos de inteligência artificial.",
+                tecnologias: "Python, R, SQL, Pandas, TensorFlow, Power BI, Machine Learning.",
+                atuacao: "Setor financeiro, empresas de varejo de grande porte, saúde, marketing digital e centros de pesquisa.",
+                curiosidade: "Utiliza estatística avançada e programação para prever tendências de mercado e comportamento de usuários."
+            },
+            {
+                nome: "Analista de Testes (QA)",
+                anguloInicio: 288,
+                anguloFim: 360,
+                atividades: "Garante a qualidade do software criando cenários de teste, encontrando bugs e falhas antes que o sistema chegue aos usuários finais.",
+                tecnologias: "Selenium, Cypress, Jest, Postman, automação de testes e testes unitários.",
+                atuacao: "Fábricas de software, equipes ágeis multidisciplinares e empresas de aplicativos móveis.",
+                curiosidade: "O profissional de QA é essencial para evitar que um pequeno erro de código vire um grande problema em produção!"
+            }
+        ];
 
-    transition: transform 4s cubic-bezier(0.15, 0.75, 0.25, 1);
-}
+        const botaoGirar = document.getElementById("botao-girar");
+        const roleta = document.getElementById("roleta");
+        const modal = document.getElementById("modal-profissao");
+        const modalTitulo = document.getElementById("modal-titulo");
+        const modalTexto = document.getElementById("modal-texto");
+        const botaoFechar = document.getElementById("botao-fechar");
 
-/* PONTA DA ROLETA (SETA) */
-.seta {
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+        let girando = false;
+        let anguloAtual = 0;
 
-    width: 0;
-    height: 0;
+        botaoGirar.addEventListener("click", () => {
+            if (girando) return;
+            girando = true;
+            botaoGirar.disabled = true;
+            botaoGirar.textContent = "Girando...";
 
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-top: 35px solid #222;
+            const indiceSorteado = Math.floor(Math.random() * profissoes.length);
+            const escolhida = profissoes[indiceSorteado];
 
-    filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.3));
-}
+            const centroFatia = (escolhida.anguloInicio + escolhida.anguloFim) / 2;
+            const voltasExtras = 360 * 6;
+            const anguloAlvo = voltasExtras + (360 - centroFatia);
 
-/* CENTRO DA ROLETA */
-.centro {
-    position: absolute;
-    width: 65px;
-    height: 65px;
+            anguloAtual += anguloAlvo;
+            roleta.style.transform = `rotate(${anguloAtual}deg)`;
 
-    background: white;
-    border: 6px solid #222;
-    border-radius: 50%;
+            setTimeout(() => {
+                modalTitulo.textContent = escolhida.nome;
+                modalTexto.innerHTML = `
+                    <p><strong>Principais Atividades:</strong> ${escolhida.atividades}</p>
+                    <p><strong>Tecnologias Utilizadas:</strong> ${escolhida.tecnologias}</p>
+                    <p><strong>Áreas de Atuação:</strong> ${escolhida.atuacao}</p>
+                    <p><strong>Curiosidade:</strong> ${escolhida.curiosidade}</p>
+                `;
+                modal.classList.add("ativo");
+            }, 4000);
+        });
 
-    z-index: 5;
+        botaoFechar.addEventListener("click", () => {
+            modal.classList.remove("ativo");
+            girando = false;
+            botaoGirar.disabled = false;
+            botaoGirar.textContent = "Girar Roleta";
+        });
+    </script>
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* BOTÃO */
-button {
-    margin-top: 35px;
-    padding: 15px 45px;
-    border: none;
-    border-radius: 10px;
-    background: #222;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: #444;
-    transform: scale(1.05);
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-/* RESULTADO */
-#resultado {
-    margin-top: 25px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #222;
-    min-height: 30px;
-    text-align: center;
-}
-
-/* PROFISSÕES / LEGENDA */
-.profissoes {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 25px;
-}
-
-.profissao {
-    padding: 10px 18px;
-    border-radius: 20px;
-    background: #eee;
-    color: #333;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 600px) {
-    .container {
-        width: 95%;
-        padding: 25px 15px;
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    .roleta-container {
-        width: 330px;
-        height: 330px;
-    }
-
-    .roleta {
-        width: 300px;
-        height: 300px;
-    }
-
-    button {
-        font-size: 18px;
-        padding: 13px 35px;
-    }
-}
+</body>
+</html>
