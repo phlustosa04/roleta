@@ -127,7 +127,8 @@
             const indiceSorteado = Math.floor(Math.random() * profissoes.length);
             const escolhida = profissoes[indiceSorteado];
 
-            const centroFatia = (escolhida.anguloInicio + escolhida.anguloFim) / 2;
+            // Cálculo exato alinhando o centro da fatia com a seta no topo
+            const centroFatia = escolhida.anguloInicio + ((escolhida.anguloFim - escolhida.anguloInicio) / 2);
             const voltasExtras = 360 * 6;
             const anguloAlvo = voltasExtras + (360 - centroFatia);
 
