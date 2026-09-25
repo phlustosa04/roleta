@@ -89,22 +89,16 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 120px;
-    margin-left: -60px;
+    width: 110px;
+    margin-left: -55px;
+    margin-top: -8px;
     text-align: center;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: bold;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
     pointer-events: none;
-    transform-origin: center center;
 }
-
-.fatia-1 { transform: rotate(36deg) translateY(-100px); }
-.fatia-2 { transform: rotate(108deg) translateY(-100px); }
-.fatia-3 { transform: rotate(180deg) translateY(-100px); }
-.fatia-4 { transform: rotate(252deg) translateY(-100px); }
-.fatia-5 { transform: rotate(324deg) translateY(-100px); }
 
 .seta {
     position: absolute;
@@ -288,12 +282,7 @@ footer {
         width: 270px;
         height: 270px;
     }
-    .fatia-1 { transform: rotate(36deg) translateY(-75px); }
-    .fatia-2 { transform: rotate(108deg) translateY(-75px); }
-    .fatia-3 { transform: rotate(180deg) translateY(-75px); }
-    .fatia-4 { transform: rotate(252deg) translateY(-75px); }
-    .fatia-5 { transform: rotate(324deg) translateY(-75px); }
     .fatia-texto {
-        font-size: 11px;
+        font-size: 10px;
     }
 }
